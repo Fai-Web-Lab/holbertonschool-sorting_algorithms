@@ -3,11 +3,10 @@
 #include <stdlib.h>
 
 /**
-	* find_max - Finds the maximum value in an array
+	* find_max - Find maximum value in an array
 	* @array: The array to search
-	* @size: Number of elements in array
-	*
-	* Return: The maximum integer in array
+	* @size: Number of elements
+	* Return: Maximum integer in array
 	*/
 int find_max(int *array, size_t size)
 {
@@ -21,9 +20,9 @@ int find_max(int *array, size_t size)
 }
 
 /**
-	* counting_sort - Sorts an array of integers using Counting sort
+	* counting_sort - Sorts an array of integers in ascending order
 	* @array: The array to sort
-	* @size: Number of elements in array
+	* @size: Number of elements in the array
 	*/
 void counting_sort(int *array, size_t size)
 {
@@ -50,10 +49,10 @@ void counting_sort(int *array, size_t size)
 	for (i = 0; i < size; i++)
 	count[array[i]]++;
 
-	print_array(count, max + 1);
-
 	for (i = 1; i <= (size_t)max; i++)
 	count[i] += count[i - 1];
+
+	print_array(count, max + 1);
 
 	for (i = size; i > 0; i--)
 	{
