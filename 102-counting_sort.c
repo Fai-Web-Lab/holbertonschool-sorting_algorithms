@@ -15,37 +15,9 @@ int find_max(int *array, size_t size)
 	int max = array[0];
 
 	for (i = 1; i < size; i++)
-	{
 	if (array[i] > max)
 	max = array[i];
-	}
 	return (max);
-}
-
-/**
-	* init_count - Initializes a count array to 0
-	* @count: The count array
-	* @size: Size of the count array
-	*/
-void init_count(int *count, int size)
-{
-	int i;
-
-	for (i = 0; i < size; i++)
-	count[i] = 0;
-}
-
-/**
-	* cumulative_count - Converts count array to cumulative counts
-	* @count: The count array
-	* @size: Size of the count array
-	*/
-void cumulative_count(int *count, int size)
-{
-	int i;
-
-	for (i = 1; i < size; i++)
-	count[i] += count[i - 1];
 }
 
 /**
@@ -55,7 +27,8 @@ void cumulative_count(int *count, int size)
 	*/
 void counting_sort(int *array, size_t size)
 {
-	int max, *count, *output;
+	int *count, *output;
+	int max;
 	size_t i;
 
 	if (!array || size < 2)
@@ -71,14 +44,16 @@ void counting_sort(int *array, size_t size)
 	return;
 	}
 
-	init_count(count, max + 1);
+	for (i = 0; i <= (size_t)max; i++)
+	count[i] = 0;
 
 	for (i = 0; i < size; i++)
 	count[array[i]]++;
 
 	print_array(count, max + 1);
 
-	cumulative_count(count, max + 1);
+	for (i = 1; i <= (size_t)max; i++)
+	count[i] += count[i - 1];
 
 	for (i = size; i > 0; i--)
 	{
